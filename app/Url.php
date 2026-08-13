@@ -21,7 +21,8 @@ class Url {
     private static function base_url($key, $endpoint ) {
         $urls = [];
         $urls = [
-            'api' => 'https://api.csqita.com',
+            // 'api' => 'https://apipublic.csqita.com',
+            'api' => 'http://localhost:8081',
         ];
 
         return $urls[$key] . $endpoint;

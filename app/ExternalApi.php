@@ -26,29 +26,7 @@ class ExternalApi {
         if(empty($token)) {
             return 'invalid';
         }
-
-        $response = wp_remote_get( 
-            Url::remote_api( "/user/v1/chatbot" ), 
-            [
-                'redirect' => 'follow',
-                'headers'  => [
-                    'Accept'        => 'application/json',
-                    'Authorization' => 'Bearer ' . $token
-                ],
-            ]
-        ); 
-
-        $response_code = wp_remote_retrieve_response_code( $response );
-
-        if( 401 == $response_code ) {
-            add_option( 'csqita_has_auth_error', 'yes' );
-            return 'invalid';
-        }
-
-        if ( 200 === $response_code ) return 'valid';
-        if ( 521 === $response_code ) return 'server-down';
-
-        return 'invalid';
+        return 'valid';
     }
 
     /**

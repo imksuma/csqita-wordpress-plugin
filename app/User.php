@@ -47,8 +47,6 @@ class User extends Api
         }
 
         // delete all data
-        // User::clear_csqita_keys();
-        
         if ( ! empty( $widgetToken ) ) {
             // save user identifier and token to DB
             update_option( 'csqita_widget_token', $widgetToken );
@@ -68,6 +66,7 @@ class User extends Api
         }
 
         if ( ! empty( $token ) ) {
+            delete_option( 'csqita_has_auth_error' );
             update_option( 'csqita_token', $token );
             $success = true;
         }

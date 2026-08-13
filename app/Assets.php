@@ -24,40 +24,11 @@ class Assets {
      * @return void
      */
     public function enqueue_csqita() {
-        $user_identifier = get_option( 'csqita_user_identifier', '' );
-        if ( ! empty( $user_identifier ) ) :
-            $dependencies = \Csqita::include_once( 'assets/js/app.asset.php' );
-            wp_enqueue_script( "csqita-script", esc_url( Url::widget_script( $user_identifier ) ), [], $dependencies['version'] , true );
-            $userId = is_user_logged_in() ? get_current_user_id(): '';
-            $emailId = is_user_logged_in() ? sanitize_email( wp_get_current_user()->user_email ) : '';
-            $siteUrl = get_site_url();
-            $userName = '';
-            if ( is_user_logged_in() ) {
-                $current_user = wp_get_current_user();
-                $userName = trim($current_user->user_firstname.' '.$current_user->user_lastname);
-            }
-            $token = '';
-            if(!empty($userId) && !empty($emailId) && !empty($siteUrl)) {
-                $secret_key = ExternalApi::get_csqita_secret_key();
-                $data = [
-                    'id'     => esc_attr($userId),
-                    'email'  => esc_attr($emailId),
-                ];
-                $token = hash_hmac(
-                    'sha256',
-                    json_encode($data),
-                    esc_attr($secret_key)
-                );
-            }
-            $data = [
-                'widgetId' => $user_identifier,
-                'emailId'  => $emailId,
-                'userId'  => $userId,
-                'token' => $token,
-                'userName' => $userName,
-                'themeName' => wp_get_theme()->get('Name'),
-            ];
-            wp_localize_script( 'csqita-script', 'wpCsqitaSettings',  $data );
+        $widgetid = get_option( 'csqita_widget_token', '' );
+        if ( ! empty( $widgetid ) ) :
+            // $qstring = 'https://api.csqita.com/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
+            $qstring = 'http://localhost:8080/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
+            echo '<script id=\'module-csqita\' async=\'true\' src=\'' . $qstring . '\'></script>';
         endif;
     }
 
@@ -99,8 +70,9 @@ class Assets {
                     "termsOfService"   => Url::terms_of_service(),
                     "privacyPolicy"    => Url::privacy_policy(),
                     'siteUrl'          => get_site_url(),
-                    'nonce'            => wp_create_nonce('csqita_plugin_nonce')
-                ] 
+                    'nonce'            => wp_create_nonce('csqita_plugin_nonce'),
+                    'token'            => get_option( 'csqita_token', '' )
+                ]
             );
         } 
     }

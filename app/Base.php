@@ -48,7 +48,6 @@ class Base {
             csqita_clear_all_caches();
         }
 
-        add_action('wp_footer', [$this, 'csqita_script']);
 
         if ( ! defined( "DOING_AJAX" ) ) {
             add_option( 'csqita_redirection', true );
@@ -56,13 +55,6 @@ class Base {
 
     }
 
-    public function csqita_script() {
-        $widgetid = get_option('csqita_widget', '');
-        if (empty($widgetid)) {
-            return;
-        }
-        echo '<script id=\'module-csqita\' async=\'true\' src=\'https://api.csqita.com/public/noauth/widget?id=' . $widgetid . '></script>';
-    }
 
     public function deactivate() {
         if(function_exists('csqita_clear_all_caches'))   {

@@ -269,7 +269,7 @@
       "</button>" +
       '<div class="csqita-error" id="csqita-login-error"></div>' +
       "</form>" +
-      '<p class="csqita-hint">Any username and password will work — this is a dummy login.</p>' +
+      '<p class="csqita-hint">do not have account? <a src="https://csqita.com/signup">register here</a></p>' +
       "</div>" +
       "</div>";
 

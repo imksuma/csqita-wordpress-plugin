@@ -10,6 +10,7 @@ namespace Csqita\App;
 
 class Url {
     use Singleton;
+    public static $environment = 'prod'; // dev | prod | local
 
     /**
      * Generates the full base URL for a given key and appends the endpoint to it.
@@ -20,10 +21,17 @@ class Url {
      */
     private static function base_url($key, $endpoint ) {
         $urls = [];
-        $urls = [
-            // 'api' => 'https://apipublic.csqita.com',
-            'api' => 'http://localhost:8081',
-        ];
+        if( self::$environment === 'dev' ) {
+            $urls = [
+                'api' => 'http://localhost:8081',
+                'widget' => 'http://localhost:8080'
+            ];
+        } else {
+            $urls = [
+                'api' => 'https://api-public.csqita.com',
+                'widget' => 'https://api.csqita.com'
+            ];
+        }
 
         return $urls[$key] . $endpoint;
     }
@@ -35,17 +43,7 @@ class Url {
      * @return string The fully constructed iframe source URL.
      */
     public static function iframe_src($token = '' ) {
-        return self::base_url( 'api', '/wordpress?token=' . $token );
-    }
-
-    /**
-     * Constructs the full URL for the fullscreen page based on the predefined base app URL.
-     *
-     * @return string The complete URL pointing to the fullscreen page.
-     */
-    public static function full_screen_url() {
-        return self::base_url( 'api', '/fullscreen' );
-
+        return self::base_url( 'widget', '/public/noauth/widget?' . $token );
     }
 
     /**
@@ -56,16 +54,6 @@ class Url {
      */
     public static function remote_api($endpoint = '' ) {
         return self::base_url( 'api', $endpoint );
-    }
-
-    /**
-     * Generates the full URL for the widget script with the specified identifier.
-     *
-     * @param string $identifier An optional identifier used to customize the widget script URL.
-     * @return string The full URL for the widget script including the provided identifier parameter.
-     */
-    public static function widget_script($identifier = '' ) {
-        return self::base_url( 'api', '/widget.js?include[]=faqs&id=' . $identifier );
     }
 
     /**
@@ -104,7 +92,7 @@ class Url {
      * @return string The URL of the landing page.
      */
     public static function landing_page() {
-        return "https://csqita.app";
+        return "https://csqita.com";
     }
 
     /**
@@ -113,7 +101,7 @@ class Url {
      * @return string The URL of the terms of service page.
      */
     public static function terms_of_service() {
-        return "https://csqita.app/terms";
+        return "https://csqita.com/terms";
     }
 
     /**
@@ -122,7 +110,7 @@ class Url {
      * @return string The URL of the privacy policy page.
      */
     public static function privacy_policy() {
-        return "https://csqita.app/privacy";
+        return "https://csqita.com/privacy";
     }
 
     /**
@@ -131,6 +119,6 @@ class Url {
      * @return string The URL of the contact us page.
      */
     public static function contact_us() {
-        return 'https://csqita.app';
+        return 'https://csqita.com';
     }
 }

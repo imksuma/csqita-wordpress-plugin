@@ -8,7 +8,7 @@
 
 namespace Csqita\App;
 
-use Csqita\App\ExternalApi;
+use Csqita\App\URL;
 
 class Assets {
     use Singleton;
@@ -26,10 +26,8 @@ class Assets {
     public function enqueue_csqita() {
         $widgetid = get_option( 'csqita_widget_token', '' );
         if ( ! empty( $widgetid ) ) :
-            // $qstring = 'https://api.csqita.com/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
-            $qstring = 'http://localhost:8080/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
-            ?><script id='module-csqita' async='true' src='<?php echo $qstring ?>'></script>
-            <?php
+            $qstring = URL::iframe_src(http_build_query(['id' => $widgetid]));
+            echo '<script id="module-csqita" async="true" src="'. esc_url($qstring) .'"></script>';
         endif;
     }
 
@@ -64,7 +62,6 @@ class Assets {
                 'csqita-app', 'csqita', [
                     'images'           => \Csqita::url( 'assets/images/' ),
                     'dashboardUrl'     => Url::admin_url(),
-                    'fullScreenUrl'    => Url::full_screen_url(),
                     'internalEndpoint' => Url::internal_api(),
                     'remoteEndpoint'   => Url::remote_api(),
                     'landingPage'      => Url::landing_page(),

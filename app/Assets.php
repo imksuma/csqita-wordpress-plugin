@@ -28,7 +28,8 @@ class Assets {
         if ( ! empty( $widgetid ) ) :
             // $qstring = 'https://api.csqita.com/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
             $qstring = 'http://localhost:8080/public/noauth/widget?'. http_build_query(['id' => $widgetid]);
-            echo '<script id=\'module-csqita\' async=\'true\' src=\'' . $qstring . '\'></script>';
+            ?><script id='module-csqita' async='true' src='<?php echo $qstring ?>'></script>
+            <?php
         endif;
     }
 

@@ -105,10 +105,6 @@ $csqitaBase = new Csqita\App\Base();
 register_activation_hook( __FILE__, [ $csqitaBase, 'activate' ] );
 register_deactivation_hook( __FILE__, [ $csqitaBase, 'deactivate' ] );
 
-// add_action('wp_footer', 'csqita_script');
-// function csqita_script() {
-//     echo '<script id=\'module-csqita\' async=\'true\' src=\'https://api.csqita.com/public/noauth/widget?id=A0ELTukEjG5yqvvNd3MUy1XpWUlV0zWg9xNS%2BEuvuQXIQhfRzJCNX0Ve%2F0HUYooaEqOh927ZJihfVtZQWFUfNX1rpsS1FOVSGN%2B1YqZFgdUC2ONUaZAh4sR0qkELXL%2Bm3nDQ44WAVvAIyitoIkZFgqoeH1rcsTmvBqFAnFzeVSvqbslAL%2BIoHcjcdE0mDT44Z36QCfnzwMFW\'></script>';
-// }
 
 /**
  * Initialize the plugin 

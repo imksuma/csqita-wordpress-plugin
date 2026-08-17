@@ -20,9 +20,9 @@ if ( ! function_exists( "csqita_clear_all_caches" ) ) {
             }
             /* if WP Super Cache is being used, clear the cache */
             if ( function_exists( 'wp_cache_clean_cache' ) ) {
-                global $file_prefix, $supercachedir;
-                if ( empty( $supercachedir ) && function_exists( 'get_supercache_dir' ) ) {
-                    $supercachedir = get_supercache_dir();
+                global $file_prefix, $csqita_supercachedir;
+                if ( empty( $csqita_supercachedir ) && function_exists( 'get_supercache_dir' ) ) {
+                    $csqita_supercachedir = get_supercache_dir();
                 }
                 wp_cache_clean_cache( $file_prefix );
             }

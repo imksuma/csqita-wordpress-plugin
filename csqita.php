@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: CSQita
+ * Plugin Name: CSQita Chat & CS
  * Description: Customer Service platform for live chat, call, and AI chatbot.
  * Version:     1.0.0
  * Author:      Ilham
@@ -10,7 +10,7 @@
  * Text Domain:       csqita
  * Domain Path:       /languages
  */
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 class Csqita {
     function __construct() {
         add_action( 'plugins_loaded', [$this, 'boot'] );
@@ -38,15 +38,11 @@ class Csqita {
     }
 
     public function boot() {
-        $this->add_textdomain();
         new Csqita\App\Assets();
         new Csqita\App\View();
         new Csqita\App\User();
     }
 
-    private function add_textdomain() {
-        load_plugin_textdomain( 'csqita', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-    }
 
     /**
      * Get the path or require any file
@@ -88,15 +84,15 @@ class Csqita {
  */ 
 require_once( 'autoloader.php' );
 require_once( 'inc/clear-all-cache.php' );
-$loader = new Csqita\AutoLoader();
-$loader->register();
+$csqita_loader = new Csqita\AutoLoader();
+$csqita_loader->register();
 /**
  * register the namespace
  * 
  * @param {1} will take the namespace
  * @param {2} path of the folder 
  */ 
-$loader->add_namespace( 'Csqita\App', Csqita::require( 'app', true ) );
+$csqita_loader->add_namespace( 'Csqita\App', Csqita::require( 'app', true ) );
 
 /**
  * Register the activation and deactivation hook 

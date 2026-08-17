@@ -18,14 +18,14 @@ class Base {
     /**
      * Redirects to the Csqita admin page if the Csqita_redirection option is set and DOING_AJAX is not defined.
      * This function checks if the Csqita_redirection option is set to true. If it is, it deletes the option and redirects
-     * to the admin.php?page=Csqita URL using wp_redirect function. It then exits the script execution.
+     * to the admin.php?page=Csqita URL using wp_safe_redirect function. It then exits the script execution.
      *
      * @return void
      */
     public function plugin_redirect() {
         if ( ! defined( "DOING_AJAX" ) && get_option( 'csqita_redirection', false ) ) {
             delete_option( 'csqita_redirection' );
-            exit( wp_redirect( admin_url("admin.php?page=Csqita") ) );
+            wp_safe_redirect( admin_url("admin.php?page=Csqita") );
         }
     }
 

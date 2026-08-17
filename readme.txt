@@ -1,4 +1,4 @@
-CSQita Chat, Call, and AI Chatbot - AI Chatbot, Customer Support, FAQ & Helpdesk Customer Service & Chat Buttons
+=== CSQita Chat & CS ===
 Contributors: csqita, imksuma
 Tags: live chat, chat, call, chatbot, customer support
 Requires at least: 4.7

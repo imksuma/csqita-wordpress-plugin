@@ -29,7 +29,7 @@ class Assets {
             $dependencies = \Csqita::include_once( 'assets/js/app.asset.php' );
             $qstring = URL::iframe_src(http_build_query(['id' => $widgetid]));
             echo '<div id="module-csqita" ></div>';
-            wp_enqueue_script( "chatway-script", esc_url($qstring), [], $dependencies['version'] , true );
+            wp_enqueue_script( "csqita-script", esc_url($qstring), [], $dependencies['version'] , true );
         endif;
     }
 

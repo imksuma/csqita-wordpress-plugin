@@ -90,7 +90,6 @@ class User extends Api
      * Remote everything related to the current user from DB
      */ 
     public function get_logout() {
-        // ExternalApi::csqita_logout();
         User::clear_csqita_keys();
         if (function_exists('csqita_clear_all_caches')) {
             csqita_clear_all_caches();
@@ -99,18 +98,6 @@ class User extends Api
             'code'    => 200,
             'message' => 'success',
         ];
-    }
-
-    /**
-     * Retrieves the unread messages count from an external API and caches it as a transient.
-     *
-     * @return array An associative array containing the count of unread messages ('count') and a status code ('code').
-     */
-    public function get_count() {
-        delete_transient( 'csqita_unread_messages_count' );
-        $count = ExternalApi::get_unread_messages_count();
-        set_transient( 'csqita_unread_messages_count', $count, 5*60 );
-        return ['count' => $count, 'code' => 200];
     }
 
     /**

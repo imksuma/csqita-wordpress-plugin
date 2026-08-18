@@ -26,8 +26,10 @@ class Assets {
     public function enqueue_csqita() {
         $widgetid = get_option( 'csqita_widget_token', '' );
         if ( ! empty( $widgetid ) ) :
+            $dependencies = \Csqita::include_once( 'assets/js/app.asset.php' );
             $qstring = URL::iframe_src(http_build_query(['id' => $widgetid]));
-            echo '<script id="module-csqita" async="true" src="'. esc_url($qstring) .'"></script>';
+            echo '<div id="module-csqita" ></div>';
+            wp_enqueue_script( "chatway-script", esc_url($qstring), [], $dependencies['version'] , true );
         endif;
     }
 

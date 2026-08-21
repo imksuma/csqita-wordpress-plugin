@@ -41,6 +41,48 @@ The platform features an advanced AI Chatbot powered by Retrieval-Augmented Gene
 = Can a user switch from chat to a call? 
 =Absolutely. Visitors can initiate a voice call directly within the chat widget whenever text communication is not enough.
 
+== External services ==
+
+This plugin connects to an API to obtain CSQita chat widget, it's needed to show the chat widget in wordpress based website that use this plugin to provide chat service to website's visitor.
+
+This service is provided by "CSQita Individual Limited Liability Company": terms of use, privacy policy.
+
+app/Url.php:32 'widget' => 'https://api.csqita.com'
+# Domain of CSQita backend to get widget, used when wordpress based website vist by someone.
+
+app/Url.php:31 'api-public' => 'https://api-public.csqita.com'
+# Domain of CSQita backend that provide login, getchatbot, activate, deactivate chatbot, and get chatbot token. used in dashboard, tool csqita admin page.
+
+assets/js/app.js:19 post 'https://api-public.csqita.com/anon/v1/login'
+# ✨ this API is used to login, used in dashboard, tool csqita admin page.
+
+assets/js/app.js:46 post 'https://api-public.csqita.com/user/v1/chatbot'
+# ✨ this API is used to change domain of chatbot to wordpress based website domain, used in dashboard, tool csqita admin page.
+
+assets/js/app.js:59 post 'https://api-public.csqita.com/user/v1/integration/token'
+# ✨ this API is used to get chatbot token used for wordpress based website, used in dashboard, tool csqita admin page.
+
+assets/js/app.js:117 get 'https://api-public.csqita.com/user/v1/chatbot'
+# ✨ this API is used to get all chatbot created in csqita platform, used in dashboard, tool csqita admin page.
+
+assets/js/app.js:134 get 'https://api-public.csqita.com/user/v1/domain'
+# ✨ this API is used to get domain of particular chatbot, used in dashboard, tool csqita admin page.
+
+app/Url.php:46 'iframe_src' => 'https://api.csqita.com/public/noauth/widget'
+# ✨ this API is used to download widget script, used when wordpress website visit by someone
+
+app/Url.php:30 $urls = [
+'api' => 'https://api-public.csqita.com',
+'widget' => 'https://api.csqita.com'
+];
+# ✨ Defines CSQita external service endpoints, and the widget endpoint is used to load a remote script.
+
+app/Url.php:104 https://csqita.com/terms
+# ✨ CSQita Terms of Service.
+
+app/Url.php:113 https://csqita.com/privacy
+# ✨ CSQita Privacy and Policy.
+
 == Changelog ==
 
 = 1.0.0 =

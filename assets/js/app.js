@@ -11,7 +11,6 @@
   // -----------------------------------------------------------------
 
   function LoginRequest(username, password) {
-    // Simulates: fetch('/api/login', { method: 'POST', body: { username, password } })
     return new Promise(async function (resolve, reject) {
       if (!username || !password) {
         reject(new Error("Username and password are required."));
@@ -43,7 +42,6 @@
   }
 
   function ActivateCardRequest(cardId) {
-    // Simulates: fetch('/api/cards/' + cardId + '/activate', { method: 'POST', headers: { Authorization: token } })
     return new Promise(async function (resolve, reject) {
       const res = await fetch(
         window.csqita.remoteEndpoint + "/user/v1/chatbot",
@@ -88,7 +86,6 @@
   }
 
   function DeactivateCardRequest(cardId) {
-    // Simulates: fetch('/api/cards/' + cardId + '/activate', { method: 'POST', headers: { Authorization: token } })
     return new Promise(async function (resolve, reject) {
       const res = await fetch(
         window.csqita.remoteEndpoint + "/user/v1/chatbot",
@@ -115,7 +112,6 @@
   }
 
   function GetCardsRequest() {
-    // Simulates: fetch('/api/cards', { headers: { Authorization: token } })
     return new Promise(async function (resolve, reject) {
       let chatbotsD = [];
       const res = await fetch(
@@ -270,6 +266,8 @@
       '<div class="csqita-error" id="csqita-login-error"></div>' +
       "</form>" +
       '<p class="csqita-hint">do not have account? <a src="https://csqita.com/signup">register here</a></p>' +
+      '<p class="csqita-hint"><a src="'+window.csqita.privacyPolicy+'">Privacy and Policy</a></p>' +
+      '<p class="csqita-hint"><a src="'+window.csqita.termsOfService+'">Terms of Service</a></p>' +
       "</div>" +
       "</div>";
 

@@ -2,7 +2,7 @@
 Contributors: csqita, imksuma
 Tags: live chat, chat, call, chatbot, customer support
 Requires at least: 4.7
-Tested up to: 7.0
+Tested up to: 7.1
 Stable tag: 1.0.0
 Plugin URI: https://csqita.com/
 License: GPLv3

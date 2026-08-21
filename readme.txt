@@ -43,7 +43,9 @@ The platform features an advanced AI Chatbot powered by Retrieval-Augmented Gene
 
 == External services ==
 
-This plugin connects to an API to obtain CSQita chat widget, it's needed to show the chat widget in wordpress based website that use this plugin to provide chat service to website's visitor.
+This plugin connects to an API to obtain CSQita chat widget, it's needed to show the chat widget in wordpress based website that use this plugin to provide chat service to website's visitor. CSQita is customer service platform that enable chat, call, and AI Customer Service Agent with feature such as RAG and human agent collaboration. CSQita is used as customer service channel that can be embedded into website using embed script. the script will create chat bubble and manage chat within the widget. the data that is sent to, or received by CSQita platform is:
+- text, document, image when wordpress based website's visitor use the widget to contact website owner.
+- or audio when the visitor make a call to website owner.
 
 This service is provided by "CSQita Individual Limited Liability Company": terms of use, privacy policy.
 
